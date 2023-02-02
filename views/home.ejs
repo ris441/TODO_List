@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>To Do List</title>
-</head>
-<body>
+<%- include('header') -%>
+
+
    <!-- <% if(day === "a Monday"){ %>
     <h1 style="color : green">Today is <%=day%></h1>
     <%}else{ %>
@@ -37,10 +30,9 @@
                 <form action="/" method="post">
                     <input type="text" name="task" id="task" placeholder="Enter your task" >
                     <!-- <button class="btndel" name="delete" type="submit" value="1" >x</button> -->
-                    <button type="submit">+</button>
+                    <button type="submit" name="btn" value=<%= day %>>+</button>
                 </form>
         </div>
     </div>
     
-</body>
-</html>
+    <%- include('footer')-%>

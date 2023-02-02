@@ -23,7 +23,12 @@ h1 {
   background-color: #fa4f16;
   text-align: center;
 }
-
+.box img{
+  width: 150px;
+  border-radius: 100px;
+  margin:   auto 30%;
+  background-color: white;
+} 
 .item {
   min-height: 70px;
   display: flex;
@@ -32,6 +37,10 @@ h1 {
   border-bottom: 1px solid #fb6610;
 }
 
+footer p{
+  color: #e3e3e3;
+  text-align: center;
+}
 .item:last-child {
   border-bottom: 0;
 }
@@ -64,6 +73,7 @@ p {
   font-size: 20px;
   font-weight: 200;
   color: rgb(206, 85, 37);
+  text-align: justify;
 }
 
 form {

@@ -1,17 +1,23 @@
 const express = require('express');
 const bodyparser = require('body-parser');
-let items = ["Add Your Task From Here"];
+const mymodule = require(__dirname+"/my_date_module.js")
+const items = [];
+const worklist=[];
 
 // making app 
 const app = express();
 app.use(bodyparser.urlencoded({extended:true}));
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
+
+
+
+
 app.get('/', (req, res) =>{
 
     // res.send("respose is received ");
     // res.sendFile(__dirname+"/index.html");
-    let weekday = '';
+    
     //  var day = new Date();
     //  var storeday = day.getDay();
     //  console.log(storeday)
@@ -45,29 +51,34 @@ app.get('/', (req, res) =>{
     //         weekday='a default day';
     //         break;
     // }
-
-    let options = {
-        weekday:"long",
-        day:"numeric",
-        month: "long"
-    }
-    let today = new Date();
-    console.log(today.toLocaleDateString("hi-IN",options))
-    console.log(today.toLocaleDateString("en-US",options))
-    weekday = today.toLocaleDateString("hi-IN",options);
-    res.render('home',{day:weekday,newtask:items});
+// currdate created inside the my_date_module 
+    res.render('home',{day:mymodule.curr_date(),newtask:items});
 });
 
 app.post('/', function(req, res){
      let  item = req.body.task;
-     if(item.length>0){
+    //  console.log(req.body.btn);
+ if(req.body.btn=="Work"){
+    worklist.push(item);
+    res.redirect('/work');
+ }
+ else{
+     items.push(item);
+     res.redirect("/");
 
-         items.push(item);
-     }
+ }    
+         
+     
       console.log(item);
     //  res.render('home',{newtask:item});
-    res.redirect("/")
 });
+app.get('/work',function(req,res){
+           res.render("home",{day:"Work List",newtask:worklist});
+});
+
+app.get("/about",function(req,res){
+    res.render("about");
+})
 // app.post('/', function(req, res) {
 //     if(req.body.delete){
   
